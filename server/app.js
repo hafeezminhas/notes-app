@@ -11,6 +11,7 @@ const path = require('path');
 const httpStatus = require('./helpers/httpStatus');
 const secretCallback = require('./helpers/secretCallback');
 const connectDB = require('./config/database');
+require('zone.js/dist/zone-node');
 
 const API = require('./api');
 
@@ -18,15 +19,6 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(helmet());
-
-app.set('view engine', 'html');
-app.set('views', 'public');
-
-app.get('*.*', express.static(path.join(__dirname, 'public')));
-
-app.get('*', (req, res) => {
-	res.render('index', { req });
-});
 
 app
 	.use('/api',
@@ -52,6 +44,8 @@ app
 	);
 
 app.use('/api', API);
+app.use(express.static(path.join(__dirname, 'public')));
+app.all("/*", serveStatic);
 
 app.use(function (req, res, next) {
 	throw new Error(`Resource not found`, httpStatus.NOT_FOUND)
@@ -59,5 +53,12 @@ app.use(function (req, res, next) {
 
 connectDB();
 // app.use(errorHandler);
+
+function serveStatic (req, res) {
+	res
+		.status(200)
+		.set({ 'content-type': 'text/html; charset=utf-8' })
+		.sendFile(path.join(__dirname, "public/index.html"));
+}
 
 module.exports = app;

@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
 	ngOnInit() {
 		forkJoin(
 			this.notesService.getNotes(1, 7),
-			this.notesService.getSharedNotes()).subscribe(res => {
+			this.notesService.getSharedNotes()).subscribe((res: any[]) => {
 			this.Notes = res[0].notes;
 			this.SharedNotes = res[1];
 		});

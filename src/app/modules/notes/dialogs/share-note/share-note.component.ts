@@ -47,7 +47,7 @@ export class ShareNoteComponent implements OnInit {
 	onSearchFocus($event) {
 		this.users = null;
 		this.searching = true;
-		this.userService.searchUsers().subscribe(res => {
+		this.userService.searchUsers().subscribe((res: User[]) => {
 			this.searching = false;
 			this.users = res;
 		});
@@ -63,7 +63,7 @@ export class ShareNoteComponent implements OnInit {
 		this.Recipient = null;
 	}
 
-	private onSubmit() {
+	onSubmit() {
 		if(!this.Recipient) {
 			return;
 		}
@@ -76,7 +76,7 @@ export class ShareNoteComponent implements OnInit {
 	}
 
 	private loadNote() {
-		this.noteService.getNote(this.id).subscribe(res => {
+		this.noteService.getNote(this.id).subscribe((res: Note) => {
 			this.Note = res;
 		});
 	}

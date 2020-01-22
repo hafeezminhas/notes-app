@@ -31,7 +31,7 @@ export class NoteItemComponent implements OnInit {
 		modalRef.componentInstance.id = this.Note._id;
 
 		modalRef.result.then((note) => {
-			this.noteService.updateNote(note._id, note).subscribe(res => {
+			this.noteService.updateNote(note._id, note).subscribe((res: Note) => {
 				console.log(res);
 				this.Note = res;
 				this.toastr.success('Note update successful.', 'Success');
@@ -59,7 +59,7 @@ export class NoteItemComponent implements OnInit {
 	}
 
 	private loadNote () {
-		this.noteService.getNote(this.route.snapshot.params.id).subscribe(res => {
+		this.noteService.getNote(this.route.snapshot.params.id).subscribe((res: any ) => {
 			console.log(res);
 			if(res.hasOwnProperty('permission') && !res.permission) {
 				this.Note = null;

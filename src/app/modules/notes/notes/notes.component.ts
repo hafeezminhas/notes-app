@@ -42,7 +42,7 @@ export class NotesComponent implements OnInit {
 	}
 
 	private loadNotes() {
-		this.noteService.getNotes(this.page, this.limit).subscribe((data) => {
+		this.noteService.getNotes(this.page, this.limit).subscribe((data: any) => {
 			this.page = data.page;
 			this.total = data.count;
 			this.Notes = data.notes;

@@ -5,6 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Project Setup
 Run `npm install` to install the project dependencies
+Mongodb Database Configuration can be changed from .env file in the project root directory
 
 ## Development server
 Run `node server` for running the REST API in development mode

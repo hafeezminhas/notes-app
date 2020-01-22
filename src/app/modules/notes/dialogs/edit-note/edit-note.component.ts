@@ -10,7 +10,7 @@ import {NotesService} from "../../../../services/notes.service";
   styleUrls: ['./edit-note.component.scss']
 })
 export class EditNoteComponent implements OnInit {
-	@Input()id: number;
+	@Input()id: string;
 	noteForm: FormGroup;
 	submitted = false;
 
@@ -31,7 +31,7 @@ export class EditNoteComponent implements OnInit {
 	get f() { return this.noteForm.controls; }
 
 	ngOnInit() {
-		this.noteService.getNote(this.id.toString()).subscribe(res => {
+		this.noteService.getNote(this.id.toString()).subscribe((res: Note) => {
 			this.Note = res;
 			this.noteForm.controls.title.setValue(res.title);
 			this.noteForm.controls.isPrivate.setValue(res.isPrivate);
@@ -39,11 +39,13 @@ export class EditNoteComponent implements OnInit {
 		});
 	}
 
-	private onSubmit() {
-		this.Note.title = this.noteForm.value.title;
-		this.Note.body = this.noteForm.value.body;
-		this.Note.isPrivate = this.noteForm.value.isPrivate;
-		this.Note.owner = this.Note.owner._id;
-		this.activeModal.close(this.Note);
+	onSubmit() {
+		let modified = {
+			title:  this.noteForm.value.title,
+			body:  this.noteForm.value.body,
+			isPrivate:  this.noteForm.value.isPrivate,
+			owner:  this.Note.owner['_id'],
+		};
+		this.activeModal.close(modified);
 	}
 }
