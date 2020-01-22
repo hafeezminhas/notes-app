@@ -31,7 +31,7 @@ export class NoteItemComponent implements OnInit {
 		modalRef.componentInstance.id = this.Note._id;
 
 		modalRef.result.then((note) => {
-			this.noteService.updateNote(note._id, note).subscribe((res: Note) => {
+			this.noteService.updateNote(this.Note._id, note).subscribe((res: Note) => {
 				console.log(res);
 				this.Note = res;
 				this.toastr.success('Note update successful.', 'Success');

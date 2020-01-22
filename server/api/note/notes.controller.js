@@ -42,7 +42,7 @@ ctrl.getNotes = async(req, res) => {
 
 	return res.send({
 		notes: notes,
-		page: page,
+		page: page + 1,
 		pages: Math.ceil(count/limit),
 		total: count
 	});
@@ -78,7 +78,7 @@ ctrl.getPublicNotes = async(req, res) => {
 
 	return res.send({
 		notes: notes,
-		page: page,
+		page: page + 1,
 		pages: Math.ceil(count/limit),
 		total: count
 	});
