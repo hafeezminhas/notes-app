@@ -1,0 +1,16 @@
+.notes-list-group {
+	padding: 0;
+
+	li {
+		list-style: none;
+		padding: 5px;
+
+		.inner {
+			padding: 8px;
+			margin-bottom: 5px;
+			background-color: #edf0f7;
+			border: 1px solid #cfdaf3;
+			border-radius: 4px;
+		}
+	}
+}

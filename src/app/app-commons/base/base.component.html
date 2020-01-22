@@ -1,0 +1,25 @@
+<div class="main">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 mt-5">
+				<ul class="master-navigation">
+					<li>
+						<a routerLink="/dashboard" routerLinkActive="active" class="inner"> <i class="fa fa-home"></i> Dashboard </a>
+					</li>
+					<li>
+						<a routerLink="/notes" routerLinkActive="active" class="inner"> <i class="fa fa-notes-medical"></i> My Notes </a>
+					</li>
+					<li>
+						<a routerLink="/sharednotes" routerLinkActive="active" class="inner"> <i class="fa fa-share-alt"></i> My Shared Notes </a>
+					</li>
+					<li>
+						<a routerLink="/notifications" routerLinkActive="active"  class="inner"> <i class="fa fa-exclamation-circle"></i> Notifications </a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-12">
+				<router-outlet></router-outlet>
+			</div>
+		</div>
+	</div>
+</div>

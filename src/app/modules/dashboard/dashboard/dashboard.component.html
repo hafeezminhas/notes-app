@@ -1,0 +1,78 @@
+<div class="main" id="login-form">
+	<div class="container mt-5">
+		<div class="row pt-5">
+
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Shared Notes</h5>
+						<div class="card-text">
+							<ul class="notes-list-group">
+								<li *ngFor="let snote of SharedNotes">
+									<a class="inner" [routerLink]="['/notes', snote.note._id]">
+										<div class="col-md-8"> {{snote.note.title}} </div>
+										<div class="col-md-4 small text-right">{{snote.sharedOn | date}}</div>
+									</a>
+								</li>
+								<li *ngIf="!SharedNotes?.length" class="no-records"> No notes available to show</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Notifications</h5>
+						<div class="card-text">
+							<div class="row">
+								<div class="col-md-12 text-right">
+									<a routerLink="/notes" class="btn btn-link text-dark"> <i class="fa fa-clipboard-list"></i> View All</a>
+								</div>
+							</div>
+							<ul class="notification-list-group">
+								<li *ngFor="let n of Notifications">
+									<div class="inner"></div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="row pt-5">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">My Notes</h5>
+						<div class="card-text">
+							<div class="row">
+								<div class="col-md-12 text-right">
+									<a routerLink="/notes" class="btn btn-link text-dark"> <i class="fa fa-clipboard-list"></i> View All</a>
+								</div>
+							</div>
+							<div class="row">
+								<ul class="notes-list-group col-md-12">
+									<li *ngFor="let note of Notes">
+										<a class="inner" [routerLink]="['/notes', note._id]">
+											<div class="col-md-8"> {{note.title}} </div>
+											<div class="col-md-3 small">{{note.createdAt | date}}</div>
+											<div class="col-md-1">
+												<i *ngIf="note.isPrivate" class="fa fa-eye-slash text-danger"></i>
+												<i *ngIf="!note.isPrivate" class="fa fa-eye text-success"></i>
+											</div>
+										</a>
+									</li>
+									<li *ngIf="!Notes?.length" class="no-records"> No notes available to show</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,45 @@
+<div class="main" id="login-form">
+	<div class="container" *ngIf="!Note && permissionWarning">
+		<div class="row">
+			<div class="col-md-12">
+				<h5><i class="fa fa-lock"></i> Note Permission</h5>
+			</div>
+			<div class="col-md-12 alert alert-warning"> <i class="fa fa-user-lock"></i> {{permissionWarning}}</div>
+		</div>
+	</div>
+	<div class="container" *ngIf="Note">
+		<div class="row pt-5">
+			<div class="col-md-7">
+				<h3>{{Note?.title}}</h3>
+				<small>Create By: {{Note?.owner.firstName + ' ' + Note?.owner.lastName}}</small>
+			</div>
+			<div class="col-md-5 text-right">
+				<a class="btn btn-sm btn-icon" ngbTooltip="Edit Note" (click)="editNote()"> <i class="fa fa-edit fa-2x"></i> </a>
+				<a class="btn btn-sm btn-icon" ngbTooltip="Share Note" (click)="shareNote()" *ngIf="Note?.isPrivate"> <i class="fa fa-share fa-2x"></i> </a>
+			</div>
+		</div>
+
+		<div class="row mt-4" *ngIf="!Note?.isPrivate">
+			<div class="col-md-12 alert alert-success">
+				<i class="fa fa-info-circle"></i> This is a public note.
+			</div>
+		</div>
+
+		<div class="row pt-3">
+			<div class="card col-md-12">
+				<div class="card-body">
+					<div class="card-text">
+						<p>{{Note?.body}}</p>
+						<p class="text-right"> <small>Last Updated {{Note?.updatedAt | date:'medium'}}</small> </p>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<a routerLink="/notes" class="btn btn-default"> <i class="fa fa-clipboard-list"></i> All Notes </a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

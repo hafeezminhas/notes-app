@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<button class="navbar-toggler hidden-sm-up"
+			type="button"
+			(click)="isNavbarCollapsed = !isNavbarCollapsed"
+			data-target="#navbarsDefault"
+			aria-controls="navbarsDefault"
+			aria-expanded="false"
+			aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<a class="navbar-brand visible-md" href="#"><img src="assets/images/logo/logo.png" alt=""> <span class="label">YNOTES</span> </a>
+	<div [ngbCollapse]="isCollapsed" class="collapse navbar-collapse">
+		<div class="navbar-nav mr-auto"> </div>
+		<div class="navbar-nav nav-right" *ngIf="!currentUser">
+			<div class="nav-item">
+				<a class="nav-link" routerLink="/login"> <i class="fa fa-user"></i> Login</a>
+			</div>
+		</div>
+		<ul class="navbar-nav nav-right mr-3" *ngIf="currentUser">
+			<li class="navbar-nav" ngbDropdown placement="bottom-right">
+				<a class="nav-link dropdown-toggle" ngbDropdownToggle><i class="fa fa-user-circle"></i> {{currentUser.firstName + ' ' + currentUser.lastName}}</a>
+				<div class="dropdown-menu" aria-labelledby="User Options" ngbDropdownMenu>
+					<a class="dropdown-item" routerLink="/user/profile"><i class="fa fa-user-cog"></i> User Profile</a>
+					<a class="dropdown-item" href="#"><i class="fa fa-key"></i> Change Password</a>
+					<a class="dropdown-item" (click)="signOut()"><i class="fa fa-power-off"></i> Signout</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</nav>

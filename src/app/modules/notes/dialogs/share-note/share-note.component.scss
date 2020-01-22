@@ -1,0 +1,18 @@
+.user-list-group {
+	padding: 10px 5px;
+
+	li {
+		padding: 2px 10px;
+		list-style: none;
+
+		a.inner {
+			cursor: pointer;
+			width: 100%;
+			display: block;
+			padding: 3px;
+			background-color: #cfdaf3;
+			border: 1px solid #c0cae1;
+			color: #2D323D;
+		}
+	}
+}

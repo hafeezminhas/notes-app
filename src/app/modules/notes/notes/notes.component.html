@@ -1,0 +1,40 @@
+<div class="main" id="login-form">
+	<div class="container">
+		<div class="row pt-5">
+			<div class="col-md-7">
+				<h4>My Notes</h4>
+			</div>
+			<div class="col-md-5 text-right">
+				<a class="btn btn-sm btn-icon" ngbTooltip="Add Note" (click)="addNote()"> <i class="fa fa-plus-circle fa-2x"></i> </a>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="notes-list-group">
+					<li *ngFor="let note of Notes">
+						<div class="inner">
+							<h5>{{note.title}}</h5>
+							<p> {{note.body}} </p>
+							<p class="text-right"> <small>[created {{note.createdAt | date:'medium'}}] [updated {{note.updatedAt | date:'medium'}}]</small> </p>
+							<div class="row">
+								<div class="col-md-12">
+									<a [routerLink]="['/notes', note._id]" class="btn btn-sm text-dark"> <i class="fa fa-info-circle fa-2x"></i> </a>
+									<a (click)="deleteNote(note)" class="btn btn-sm text-danger"> <i class="fa fa-trash fa-2x"></i> </a>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li *ngIf="Notes && !Notes?.length">
+						<div class="alert alert-info"> <i class="fa fa-info-circle"></i> No notes available to show </div>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-12 text-right" *ngIf="total > limit">
+				<ngb-pagination [collectionSize]="total"
+								[(page)]="page"
+								aria-label="Notes Pagination"></ngb-pagination>
+			</div>
+		</div>
+	</div>
+</div>

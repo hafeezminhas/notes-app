@@ -1,0 +1,54 @@
+<div class="modal-header">
+	<h4 class="modal-title">My Form</h4>
+	<button type="button" class="close" aria-label="Close"
+			(click)="activeModal.dismiss('Cross click')"> <i class="fa fa-times"></i> </button>
+</div>
+<form [formGroup]="shareNoteForm" (ngSubmit)="onSubmit()" autocomplete="off">
+	<div class="modal-boy">
+		<div class="container">
+			<div class="form-group row mt-4">
+				<div class="col-sm-12">
+					<label for="user-search">Search for a recipient</label>
+					<input type="text"
+						   (focus)="onSearchFocus($event)"
+						   id="user-search"
+						   formControlName="user"
+						   class="form-control" />
+				</div>
+			</div>
+
+			<div class="row form-group" *ngIf="users?.length && !Recipient">
+				<div class="col-md-12"><h5>Search Results</h5></div>
+				<ul class="user-list-group col-md-12">
+					<li *ngFor="let u of users">
+						<a class="inner" (click)="selectRecipient(u)"><i class="fa fa-user-circle"></i> {{u.name}}</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="row px-3" *ngIf="Recipient">
+				<div class="col-md-12 py-1 alert alert-info">
+					<div class="row">
+						<div class="col-md-10">Selected Recipient: <span class="bold">{{Recipient?.name}}</span></div>
+						<div class="col-md-2 text-right"><a (click)="resetRecipient()" class="btn text-danger"> <i class="fa fa-times-circle"></i> </a> </div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-group">
+				<label for="comments" class="col-sm-4 col-form-label">Comments</label>
+				<div class="col-sm-12">
+					<textarea id="comments"
+							  name="comments"
+							  class="form-control"
+							  formControlName="comments"
+							  cols="30"
+							  rows="7"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" [disabled]="!shareNoteForm.valid"> Save Note </button>
+	</div>
+</form>
